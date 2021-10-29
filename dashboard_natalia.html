@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade Dashboard Natália</title>
+  <link rel="stylesheet" href="style_dash.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- CABEÇALHO -->
+  <div class="header">
+    <div class="container">
+      <h1><span class="titulo">Dash</span> money</h1>
+    </div>
+  </div>
+
+  <div class="div_dash">
+
+    <!-- GRÁFICOS SALÁRIO -->
+
+    <div class="graph">
+      <canvas id="salario_min" style="width: 100%; height: 100%"></canvas>
+    </div>
+
+    <div class="graph">
+      <canvas id="salario_media" style="width: 100%; height: 100%"></canvas>
+    </div>
+
+    <div class="graph">
+      <canvas id="desemprego_regiao" style="width: 100%; height: 100%"></canvas>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  const salario_min = {
+    type: "bar",
+    data: {
+      labels: ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"],
+      datasets: [
+        {
+          label: "Salário Minimo (2011 - 2021)",
+          data: [540.00, 622.00, 678.00, 724.00, 788.00, 880.00, 937.00, 954.00, 998.00, 1045.00, 1100.00],
+          backgroundColor: "#AF7A6D",
+          borderColor: "#653239"
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false
+      /* maintainAspectRatio (manter relação de aspecto) 
+        caso true: ele "obdece" a altura e largura que colocamos
+        caso false: ele não "obdece" a altura e largura que colocamos e se ajusta ao componente pai
+      */
+    }
+  }
+  const salario_media = {
+    type: "line",
+    data: {
+      labels: ["Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"],
+      datasets: [
+        {
+          label: "Média de Salário por Região",
+          data: [1711.00, 1539.00, 2585.00, 2499.00, 2498.00],
+          backgroundColor: ["#A0CCE8"],
+          borderColor: "#84a9c0"
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false
+    }
+
+  }
+
+  const desemprego = {
+    type: "radar",
+    data: {
+      labels: ["Brasil (total)", "Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"],
+      datasets: [
+        {
+          label: "Desemprego por Região (%)",
+          data: [11, 10.6, 13.6, 11.4, 6.8, 9.3],
+          backgroundColor: ["#b3cbb9"],
+          borderColor: "#596E30"
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false
+    }
+
+  }
+
+  var grafico_salario = new Chart(document.getElementById("salario_min"), salario_min);
+  var grafico_media = new Chart(document.getElementById("salario_media"), salario_media);
+  var grafico_desemprego = new Chart(document.getElementById("desemprego_regiao"), desemprego);
+  /* aqui obrigatoriamente tem que colocar new Chart() para criar um novo chart
+  e passar dentro dos (parênteses) o elemento canvas que você quer mandar e
+  separado pela virgula o que você quer mandar, no nosso caso a config que fizemos
+  */
+</script>
